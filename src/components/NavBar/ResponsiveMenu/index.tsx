@@ -18,7 +18,7 @@ const ResponsiveMenu = () => {
     <>
       <Button
         className="justify-self-end ssm:col-start-2 ssm:row-start-1 ssm:order-3 sm:hidden"
-        variant="ghost"
+        variant="secondary"
         size="icon"
         onClick={() => handleMenu()}
       >
@@ -26,9 +26,9 @@ const ResponsiveMenu = () => {
       </Button>
 
       <nav
-        className={`fixed transition-all z-20 bg-zinc-100 dark:bg-zinc-800 h-full top-0 w-[220px] ${
+        className={`fixed transition-all z-20   h-full top-0 w-[220px] bg-primary sm:bg-transparent ${
           openMenu ? "left-0" : "left-[-100vw]"
-        } flex items-center justify-center sm:relative sm:h-min sm:w-min sm:left-0 sm:bg-white  sm:dark:bg-zinc-950 sm:justify-self-center`}
+        } flex items-center justify-center sm:relative sm:h-min sm:w-min sm:left-0  sm:justify-self-center`}
       >
         <ul className="flex flex-col gap-10 sm:flex-row sm:w-full sm:gap-8 sm:justify-between">
           <li>
