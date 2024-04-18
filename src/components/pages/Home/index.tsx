@@ -1,4 +1,5 @@
 import SectionFilters from "@/components/SectionFilters";
+import SectionPagination from "@/components/SectionPagination";
 import SectionProducts from "@/components/SectionProducts";
 import MoveToTop from "@/utils/MoveToTop";
 
@@ -8,7 +9,7 @@ const Home = () => {
       <MoveToTop />
       <SectionFilters />
       <SectionProducts />
-      <section>pagination</section>
+      <SectionPagination />
     </main>
   );
 };
