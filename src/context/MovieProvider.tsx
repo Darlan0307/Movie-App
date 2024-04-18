@@ -9,7 +9,7 @@ import {
 } from "react";
 
 type ContextValue = {
-  dataMovie: MovieType | null;
+  dataMovie: MovieType;
   textSearchMovie: string;
   handleTextSearchMovie: (value: string) => void;
   typeSearch: string;
@@ -28,7 +28,7 @@ type ProviderProps = {
 };
 
 export const MovieProvider = ({ children }: ProviderProps) => {
-  const [dataMovie, setDataMovie] = useState<MovieType | null>(null);
+  const [dataMovie, setDataMovie] = useState<MovieType>({} as MovieType);
   const [textSearchMovie, setTextSearchMovie] = useState("");
   const [typeSearch, setTypeSearch] = useState("popular");
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,7 +57,7 @@ export const MovieProvider = ({ children }: ProviderProps) => {
       const response = await api.get(
         `search/movie?query=${text}&include_adult=true&language=pt-BR&page=${currentPage}`
       );
-      setDataMovie(response.data.results);
+      setDataMovie(response.data);
       setTotalPage(response.data.total_pages);
       setTotalResults(response.data.total_results);
       // console.log(response.data);
@@ -67,10 +67,10 @@ export const MovieProvider = ({ children }: ProviderProps) => {
     const response = await api.get(
       `movie/${typeSearch}?language=pt-BR&include_adult=true&page=${currentPage}`
     );
-    setDataMovie(response.data.results);
+    setDataMovie(response.data);
     setTotalPage(response.data.total_pages);
     setTotalResults(response.data.total_results);
-    // console.log(response.data.results);
+    // console.log(response.data);
   };
 
   useEffect(() => {

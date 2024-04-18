@@ -7,7 +7,10 @@ import ResponsiveMenu from "./ResponsiveMenu";
 const NavBar = () => {
   return (
     <header className="p-6 grid grid-cols-2 grid-rows-2 gap-1 items-center ssm:grid-rows-1 ssm:gap-10 sm:grid-cols-3">
-      <Link to="/" className="flex flex-col gap-1 items-center">
+      <Link
+        to="/"
+        className="flex flex-col gap-1 items-center sm:justify-self-start sm:pl-[3vw]"
+      >
         <img className="w-[60px] " src={logo} alt="logo do site" />
         <span className="font-bold">Search Movies</span>
       </Link>
