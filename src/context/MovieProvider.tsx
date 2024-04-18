@@ -77,6 +77,10 @@ export const MovieProvider = ({ children }: ProviderProps) => {
     fetchDataMovie();
   }, []);
 
+  // useEffect(() => {
+  //   console.log(typeSearch);
+  // }, [typeSearch]);
+
   const value = {
     dataMovie,
     textSearchMovie,
