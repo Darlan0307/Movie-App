@@ -3,15 +3,59 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { FormEvent, useState } from "react";
 
 const SignUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const validateEmail = (email: string) => {
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+    return regex.test(email);
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (!validateEmail(email)) {
+      toast.error("invalid Email");
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error("short Password");
+      return;
+    }
+
+    if (!(password == confirmPassword)) {
+      toast.error("invalid Password");
+      return;
+    }
+
+    console.log("passou");
+  };
+
   return (
     <main className="w-full max-w-[400px] mx-auto flex flex-col gap-6 px-4">
       <h1 className="text-3xl text-center font-bold">SignUp</h1>
 
-      <form autoComplete="off" className="flex flex-col items-center gap-8">
+      <form
+        onSubmit={handleSubmit}
+        autoComplete="off"
+        className="flex flex-col items-center gap-8"
+      >
         <div className="w-full relative">
-          <Input id="email" className="peer text-lg" required min={1} />
+          <Input
+            id="email"
+            className="peer text-lg"
+            required
+            min={1}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
           <Label
             htmlFor="email"
             className="absolute top-[10%] left-[5%] transition-all text-lg  peer-focus-within:top-[-70%] peer-focus-within:left-1 peer-focus-within:text-primary peer-valid:top-[-70%] peer-valid:left-1 peer-valid:text-primary "
@@ -26,6 +70,8 @@ const SignUp = () => {
             required
             min={1}
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Label
             htmlFor="password"
@@ -41,6 +87,8 @@ const SignUp = () => {
             required
             min={1}
             type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Label
             htmlFor="confirmpassword"
