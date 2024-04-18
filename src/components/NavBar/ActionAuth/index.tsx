@@ -1,12 +1,13 @@
-import { Button } from "../../ui/button";
+import { Link } from "react-router-dom";
+import { buttonVariants } from "../../ui/button";
 import { User, LogIn } from "lucide-react";
 
 const ActionAuth = () => {
   return (
-    <Button variant="secondary">
+    <Link to="/signin" className={buttonVariants({ variant: "secondary" })}>
       <User />
       <span>SignIn</span>
-    </Button>
+    </Link>
   );
 };
 
