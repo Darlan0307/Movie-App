@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 const SignIn = () => {
   return (
@@ -45,8 +46,14 @@ const SignIn = () => {
         </span>
       </div>
 
-      <Button variant="secondary">Google</Button>
-      <Button variant="secondary">GitHub</Button>
+      <Button variant="secondary" className="flex items-center gap-2 py-5">
+        {" "}
+        <FaGoogle size={25} /> <span>Google</span>
+      </Button>
+      <Button variant="secondary" className="flex items-center gap-2 py-5">
+        {" "}
+        <FaGithub size={25} /> <span>GitHub</span>
+      </Button>
 
       <p className="text-center text-lg">
         Don't have an account,{" "}
