@@ -1,5 +1,6 @@
 import { MovieType } from "@/@types/MovieType";
 import { api } from "@/services/api";
+import { useDebounce } from "@uidotdev/usehooks";
 import {
   ReactNode,
   createContext,
@@ -34,6 +35,8 @@ export const MovieProvider = ({ children }: ProviderProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [totalResults, setTotalResults] = useState(1);
+
+  const delayTextSearchMovie = useDebounce(textSearchMovie, 400);
 
   const handleTextSearchMovie = (value: string) => {
     setTextSearchMovie(value);
@@ -77,9 +80,18 @@ export const MovieProvider = ({ children }: ProviderProps) => {
     fetchDataMovie();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(typeSearch);
-  // }, [typeSearch]);
+  useEffect(() => {
+    if (delayTextSearchMovie) {
+      fetchDataMovie(delayTextSearchMovie);
+      return;
+    }
+
+    fetchDataMovie();
+  }, [typeSearch, delayTextSearchMovie]);
+
+  useEffect(() => {
+    setTextSearchMovie("");
+  }, [typeSearch]);
 
   const value = {
     dataMovie,
