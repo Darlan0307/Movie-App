@@ -7,6 +7,7 @@ import {
 } from "react";
 import { User, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { firebase_app } from "@/firebase/firebaseConfig";
+import { toast } from "react-toastify";
 
 interface AuthContextType {
   userAuth: User | null;
@@ -33,7 +34,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       auth,
       (authUserCredentials: User | null) => {
         setUserAuth(authUserCredentials);
-        console.log(userAuth);
+        // console.log(userAuth);
       }
     );
 
@@ -45,6 +46,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       error = null;
     try {
       result = await signOut(auth);
+      toast.success("logged out");
     } catch (e) {
       error = e;
     }

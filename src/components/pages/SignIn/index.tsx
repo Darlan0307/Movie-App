@@ -1,19 +1,31 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
+import signIn from "@/firebase/auth/signIn";
+import MensageErrorFirebase from "@/utils/MensageErrorFirebase";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const navigation = useNavigate();
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    console.log("passou");
+    const { error } = await signIn(email, password);
+
+    const haveError = MensageErrorFirebase(error);
+    if (haveError) return;
+
+    toast.success("Welcome back!");
+    navigation("/");
+    setEmail("");
+    setPassword("");
   };
 
   return (

@@ -6,7 +6,8 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { FormEvent, useState } from "react";
 import signUp from "@/firebase/auth/signUp";
-import { FirebaseError } from "firebase/app";
+import ValidateDataUser from "@/utils/ValidateDataUser";
+import MensageErrorFirebase from "@/utils/MensageErrorFirebase";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -14,45 +15,19 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigation = useNavigate();
 
-  const validateEmail = (email: string) => {
-    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    return regex.test(email);
-  };
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    let haveError = false;
 
-    if (!validateEmail(email)) {
-      toast.error("invalid Email");
-      return;
-    }
+    haveError = ValidateDataUser(email, password, confirmPassword);
 
-    if (password.length < 6) {
-      toast.error("short Password");
-      return;
-    }
-
-    if (!(password == confirmPassword)) {
-      toast.error("invalid Password");
-      return;
-    }
+    if (haveError) return;
 
     const { error } = await signUp(email, password);
 
-    if (error) {
-      const firebaseError = error as FirebaseError;
-      if (firebaseError.message) {
-        const inicial = firebaseError.message.indexOf("/");
-        const final = firebaseError.message.lastIndexOf(")");
-        const textError = firebaseError.message.slice(inicial + 1, final);
+    haveError = MensageErrorFirebase(error);
 
-        toast.error(textError);
-        return;
-      } else {
-        toast.error("Unknown Error");
-        return;
-      }
-    }
+    if (haveError) return;
 
     toast.success("Register completed!");
     navigation("/");
