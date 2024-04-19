@@ -1,22 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { FormEvent, useState } from "react";
+import signUp from "@/firebase/auth/signUp";
+import { FirebaseError } from "firebase/app";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigation = useNavigate();
 
   const validateEmail = (email: string) => {
     const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     return regex.test(email);
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
@@ -34,7 +37,28 @@ const SignUp = () => {
       return;
     }
 
-    console.log("passou");
+    const { error } = await signUp(email, password);
+
+    if (error) {
+      const firebaseError = error as FirebaseError;
+      if (firebaseError.message) {
+        const inicial = firebaseError.message.indexOf("/");
+        const final = firebaseError.message.lastIndexOf(")");
+        const textError = firebaseError.message.slice(inicial + 1, final);
+
+        toast.error(textError);
+        return;
+      } else {
+        toast.error("Unknown Error");
+        return;
+      }
+    }
+
+    toast.success("Register completed!");
+    navigation("/");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
   };
 
   return (
