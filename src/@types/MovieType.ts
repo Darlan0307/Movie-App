@@ -1,7 +1,7 @@
 export type MovieType = {
   dates?: Dates;
   page: number;
-  results: Result[];
+  results: MovieInfo[];
   total_pages: number;
   total_results: number;
 };
@@ -11,7 +11,7 @@ interface Dates {
   minimum: string;
 }
 
-interface Result {
+export type MovieInfo = {
   adult: boolean;
   backdrop_path?: string;
   genre_ids: number[];
@@ -26,4 +26,5 @@ interface Result {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
+  isFavorite?: boolean;
+};

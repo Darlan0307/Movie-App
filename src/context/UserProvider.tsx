@@ -46,6 +46,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       error = null;
     try {
       result = await signOut(auth);
+      localStorage.removeItem("MoviesFavorites");
       toast.success("logged out");
     } catch (e) {
       error = e;

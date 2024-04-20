@@ -1,4 +1,4 @@
-import { MovieType } from "@/@types/MovieType";
+import { MovieInfo, MovieType } from "@/@types/MovieType";
 import { api } from "@/services/api";
 import { useDebounce } from "@uidotdev/usehooks";
 import {
@@ -19,6 +19,9 @@ type ContextValue = {
   currentPage: number;
   totalResults: number;
   handleCurrentPage: (num: number) => void;
+  addFavorites: (data: MovieInfo) => void;
+  removeFavorites: (id: number) => void;
+  favorites: MovieInfo[];
 };
 
 const MovieContext = createContext<ContextValue>({} as ContextValue);
@@ -34,8 +37,22 @@ export const MovieProvider = ({ children }: ProviderProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [totalResults, setTotalResults] = useState(1);
+  const [favorites, setFavorites] = useState<MovieInfo[]>(
+    JSON.parse(localStorage.getItem("MoviesFavorites") as string) || []
+  );
 
   const delayTextSearchMovie = useDebounce(textSearchMovie, 400);
+
+  const addFavorites = (data: MovieInfo) => {
+    data["isFavorite"] = true;
+    setFavorites([...favorites, data]);
+  };
+
+  const removeFavorites = (id: number) => {
+    const favoritesFiltred = favorites.filter((movie) => movie.id != id);
+
+    setFavorites(favoritesFiltred);
+  };
 
   const handleTextSearchMovie = (value: string) => {
     setTextSearchMovie(value);
@@ -88,6 +105,10 @@ export const MovieProvider = ({ children }: ProviderProps) => {
     setTextSearchMovie("");
   }, [typeSearch]);
 
+  useEffect(() => {
+    localStorage.setItem("MoviesFavorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   const value = {
     dataMovie,
     textSearchMovie,
@@ -98,6 +119,9 @@ export const MovieProvider = ({ children }: ProviderProps) => {
     currentPage,
     totalResults,
     handleCurrentPage,
+    addFavorites,
+    removeFavorites,
+    favorites,
   };
 
   return (

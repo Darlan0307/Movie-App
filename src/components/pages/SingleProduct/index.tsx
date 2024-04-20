@@ -1,23 +1,35 @@
+import { MovieInfo } from "@/@types/MovieType";
 import { Button } from "@/components/ui/button";
 import { useMovie } from "@/context/MovieProvider";
 import { useAuthContext } from "@/context/UserProvider";
 import MoveToTop from "@/utils/MoveToTop";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const SingleProduct = () => {
   const { id } = useParams();
 
-  const { dataMovie } = useMovie();
+  const { dataMovie, addFavorites, removeFavorites, favorites } = useMovie();
 
   const { userAuth } = useAuthContext();
+
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const movieFiltred = dataMovie.results?.find(
     (movie) => movie.id == Number(id)
   );
 
-  const handleClick = () => {
+  useEffect(() => {
+    if (movieFiltred) {
+      const result = favorites.includes(movieFiltred);
+      setIsFavorite(result);
+    }
+  });
+
+  const handleClickAddFavorites = (data: MovieInfo) => {
     if (userAuth) {
+      addFavorites(data);
       toast.success("sucess!");
     } else {
       toast.warn("Make login!");
@@ -34,9 +46,30 @@ const SingleProduct = () => {
           className="rounded-xl sm:w-[400px]"
         />
         <article className="flex flex-col items-start gap-4 max-w-[400px]">
-          <Button size="lg" className="text-white" onClick={handleClick}>
-            Add Favorites
-          </Button>
+          {isFavorite ? (
+            <Button
+              variant="destructive"
+              size="lg"
+              className="text-white"
+              onClick={() => {
+                removeFavorites(movieFiltred?.id || 0);
+              }}
+            >
+              Remove Favorites
+            </Button>
+          ) : (
+            <Button
+              size="lg"
+              className="text-white"
+              onClick={() => {
+                if (movieFiltred) {
+                  handleClickAddFavorites(movieFiltred);
+                }
+              }}
+            >
+              Add Favorites
+            </Button>
+          )}
           <h1 className="text-2xl font-bold">{movieFiltred?.title}</h1>
           <div className="flex flex-col gap-4 ">
             <p className="text-lg">
