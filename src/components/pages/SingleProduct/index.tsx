@@ -14,7 +14,7 @@ const SingleProduct = () => {
     <main>
       <h1>{movieFiltred?.title}</h1>
       <img
-        src={`https://image.tmdb.org/t/p/w300${movieFiltred.poster_path}`}
+        src={`https://image.tmdb.org/t/p/w300${movieFiltred?.poster_path}`}
         alt={movieFiltred?.original_title}
       />
     </main>
