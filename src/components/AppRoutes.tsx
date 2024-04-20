@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Favorites from "./pages/Favorites";
+import Rodape from "./pages/Rodape";
+import About from "./pages/About";
 
 const AppRoutes = () => {
   return (
@@ -17,10 +19,14 @@ const AppRoutes = () => {
 
         <Route path="/favorites" element={<Favorites />} />
 
+        <Route path="/aboutapi" element={<About />} />
+
         <Route path="/signin" element={<SignIn />} />
 
         <Route path="/signup" element={<SignUp />} />
       </Routes>
+
+      <Rodape />
     </BrowserRouter>
   );
 };
