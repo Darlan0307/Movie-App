@@ -1,30 +1,63 @@
-# React + TypeScript + Vite
+![Logo do projeto](src/assets/imgmovieapp.png)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Movie App
 
-Currently, two official plugins are available:
+## 🔥 Introdução
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Catalogo de filmes usando a API do TMDB's para ter acesso a milhares de filmes.
+O usuário pode pesquisar seu filme pelo nome ou conhecer novos filmes que estão em lançamento ou em alta. O usuário pode favoritar os filmes que achou interessant, para desbloquear esse recurso ele deve escolher fazer login com:
 
-## Expanding the ESLint configuration
+- email e senha
+- Google
+- GitHub
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### ⚙️ Pré-requisitos
 
-- Configure the top-level `parserOptions` property like this:
+Caso queira colaborar com o projeto certifique-se que tenha as seguintes tecnologias instaladas e configuradas
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+node
+git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 🔨 Guia de instalação
+
+Etapas para instalar:
+
+Passo 1:
+
+```
+git clone https://github.com/Darlan0307/Movie-App.git
+```
+
+Passo 2:
+
+```
+cd movie-app
+```
+
+Passo 3:
+
+```
+npm install
+```
+
+Passo 4:
+
+```
+npm run dev
+```
+
+## 📦 Tecnologias usadas:
+
+- ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+- ![Firebase](https://img.shields.io/badge/firebase-a08021?style=for-the-badge&logo=firebase&logoColor=ffcd34)
+- ![Context-API](https://img.shields.io/badge/Context--Api-000000?style=for-the-badge&logo=react)
+- ![Radix UI](https://img.shields.io/badge/radix%20ui-161618.svg?style=for-the-badge&logo=radix-ui&logoColor=white)
+- ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+- ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
+## 💡 Social
+
+- [Meu linkedin](https://www.linkedin.com/in/darlan-martins-8a7956259/)

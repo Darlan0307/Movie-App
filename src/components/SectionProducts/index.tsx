@@ -13,7 +13,9 @@ const SectionProducts = () => {
           <span className="text-primary font-bold">{totalResults}</span> results
         </h1>
       ) : (
-        <h1 className="text-3xl text-center">All Movies</h1>
+        <h1 className="text-3xl text-center text-primary font-bold">
+          All Movies
+        </h1>
       )}
 
       <div className="flex flex-wrap gap-10 justify-center items-start">

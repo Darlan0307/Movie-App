@@ -34,7 +34,7 @@ const Favorites = () => {
               <img
                 src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                 alt={movie.title}
-                className="h-[100%] rounded-xl"
+                className="h-[100%] rounded-xl z-10"
               />
               <h3 className=" font-bold text-lg overflow-auto z-10">
                 {movie.title}
@@ -43,7 +43,7 @@ const Favorites = () => {
               <img
                 src={`https://image.tmdb.org/t/p/w300${movie.backdrop_path}`}
                 alt={movie.title}
-                className="absolute top-0 left-0 opacity-20 brightness-50 w-full h-full rounded-2xl"
+                className="absolute top-0 left-0 opacity-50 brightness-50  dark:opacity-20 dark:brightness-50 w-full h-full rounded-2xl "
               />
             </Link>
           ))

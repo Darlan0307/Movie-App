@@ -106,7 +106,7 @@ const SingleProduct = () => {
         <img
           src={`https://image.tmdb.org/t/p/w300${movieFiltred?.backdrop_path}`}
           alt={movieFiltred?.original_title}
-          className="opacity-20 w-full h-full -z-10 absolute top-0 left-0"
+          className="opacity-50 dark:brightness-50 w-full h-full -z-10 absolute top-0 left-0"
         />
       </main>
     </>
