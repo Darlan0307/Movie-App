@@ -7,6 +7,10 @@ import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 import signIn from "@/firebase/auth/signIn";
 import MensageErrorFirebase from "@/utils/MensageErrorFirebase";
+import {
+  signInGooglePopup,
+  signInGoogleRedirect,
+} from "@/firebase/auth/authGoogle";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -82,7 +86,17 @@ const SignIn = () => {
         </span>
       </div>
 
-      <Button variant="secondary" className="flex items-center gap-2 py-5">
+      <Button
+        variant="secondary"
+        className="flex items-center gap-2 py-5"
+        onClick={() => {
+          if (window.innerWidth <= 800) {
+            signInGoogleRedirect();
+          } else {
+            signInGooglePopup();
+          }
+        }}
+      >
         {" "}
         <FaGoogle size={25} /> <span>Google</span>
       </Button>

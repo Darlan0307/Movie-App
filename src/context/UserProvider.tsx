@@ -34,7 +34,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({
       auth,
       (authUserCredentials: User | null) => {
         setUserAuth(authUserCredentials);
-        // console.log(userAuth);
+        console.log(userAuth);
       }
     );
 

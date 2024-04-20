@@ -8,6 +8,10 @@ import { FormEvent, useState } from "react";
 import signUp from "@/firebase/auth/signUp";
 import ValidateDataUser from "@/utils/ValidateDataUser";
 import MensageErrorFirebase from "@/utils/MensageErrorFirebase";
+import {
+  signInGooglePopup,
+  signInGoogleRedirect,
+} from "@/firebase/auth/authGoogle";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -107,7 +111,17 @@ const SignUp = () => {
         </span>
       </div>
 
-      <Button variant="secondary" className="flex items-center gap-2 py-5">
+      <Button
+        variant="secondary"
+        className="flex items-center gap-2 py-5"
+        onClick={() => {
+          if (window.innerWidth <= 800) {
+            signInGoogleRedirect();
+          } else {
+            signInGooglePopup();
+          }
+        }}
+      >
         {" "}
         <FaGoogle size={25} /> <span>Google</span>
       </Button>
