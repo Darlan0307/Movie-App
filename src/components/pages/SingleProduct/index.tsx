@@ -21,11 +21,9 @@ const SingleProduct = () => {
   );
 
   useEffect(() => {
-    if (movieFiltred) {
-      const result = favorites.includes(movieFiltred);
-      setIsFavorite(result);
-    }
-  });
+    const result = favorites.some((fav) => fav.id === movieFiltred?.id);
+    setIsFavorite(result);
+  }, [movieFiltred, favorites]);
 
   const handleClickAddFavorites = (data: MovieInfo) => {
     if (userAuth) {
