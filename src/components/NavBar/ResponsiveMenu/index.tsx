@@ -33,6 +33,11 @@ const ResponsiveMenu = () => {
         className={`fixed transition-all z-20   h-full top-0 w-[220px] bg-primary sm:bg-transparent ${
           openMenu ? "left-0" : "left-[-100vw]"
         } flex items-center justify-center sm:relative sm:h-min sm:w-min sm:left-0  sm:justify-self-center`}
+        onClick={() => {
+          if (openMenu) {
+            handleMenu();
+          }
+        }}
       >
         <ul className="flex flex-col gap-10 sm:flex-row sm:w-full sm:gap-8 sm:justify-between">
           <li>

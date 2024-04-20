@@ -4,6 +4,7 @@ import SingleProduct from "./pages/SingleProduct";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Favorites from "./pages/Favorites";
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,8 @@ const AppRoutes = () => {
         <Route path="/" element={<Home />} />
 
         <Route path="/movie/:id" element={<SingleProduct />} />
+
+        <Route path="/favorites" element={<Favorites />} />
 
         <Route path="/signin" element={<SignIn />} />
 
