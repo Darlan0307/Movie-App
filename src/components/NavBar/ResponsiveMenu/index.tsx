@@ -2,8 +2,12 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, CircleX } from "lucide-react";
+import { useAuthContext } from "@/context/UserProvider";
+
 const ResponsiveMenu = () => {
   const [openMenu, setOpenMenu] = useState(false);
+
+  const { userAuth } = useAuthContext();
 
   const handleMenu = (value?: boolean) => {
     if (value != undefined) {
@@ -41,16 +45,18 @@ const ResponsiveMenu = () => {
               Products
             </Link>
           </li>
-          <li>
-            <Link
-              to="/favorites"
-              className={`${buttonVariants({
-                variant: "ghost",
-              })} text-xl w-full sm:w-min   `}
-            >
-              Favorites
-            </Link>
-          </li>
+          {!!userAuth && (
+            <li>
+              <Link
+                to="/favorites"
+                className={`${buttonVariants({
+                  variant: "ghost",
+                })} text-xl w-full sm:w-min   `}
+              >
+                Favorites
+              </Link>
+            </li>
+          )}
           <li>
             <Link
               to="/aboutapi"

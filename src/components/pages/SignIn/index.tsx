@@ -11,6 +11,10 @@ import {
   signInGooglePopup,
   signInGoogleRedirect,
 } from "@/firebase/auth/authGoogle";
+import {
+  signInGithubPopup,
+  signInGithubRedirect,
+} from "@/firebase/auth/authGithub";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -95,12 +99,24 @@ const SignIn = () => {
           } else {
             signInGooglePopup();
           }
+          navigation("/");
         }}
       >
         {" "}
         <FaGoogle size={25} /> <span>Google</span>
       </Button>
-      <Button variant="secondary" className="flex items-center gap-2 py-5">
+      <Button
+        variant="secondary"
+        className="flex items-center gap-2 py-5"
+        onClick={() => {
+          if (window.innerWidth <= 800) {
+            signInGithubRedirect();
+          } else {
+            signInGithubPopup();
+          }
+          navigation("/");
+        }}
+      >
         {" "}
         <FaGithub size={25} /> <span>GitHub</span>
       </Button>
