@@ -4,12 +4,14 @@
 
 ## 🔥 Introdução
 
-Catalogo de filmes usando a API do TMDB's para ter acesso a milhares de filmes.
-O usuário pode pesquisar seu filme pelo nome ou conhecer novos filmes que estão em lançamento ou em alta. O usuário pode favoritar os filmes que achou interessant, para desbloquear esse recurso ele deve escolher fazer login com:
+Este aplicativo, desenvolvido com a API do TMDB, oferece acesso a um catálogo abrangente com milhares de filmes. Explore lançamentos recentes, sucessos de bilheteria e clássicos atemporais, tudo na palma da sua mão.
 
-- email e senha
-- Google
-- GitHub
+### Recursos:
+
+- Pesquisa inteligente: Encontre o filme perfeito para você com nossa barra de pesquisa intuitiva. Digite o título ou explore por gênero, diretor, ator e muito mais.
+- Novidades e Destaques: Fique por dentro dos últimos lançamentos e dos filmes mais populares do momento. Nossa seção "Novidades e Destaques" garante que você nunca perca um bom filme.
+- Favoritos: Salve seus filmes favoritos para acessá-los facilmente mais tarde. Crie sua própria lista personalizada e compartilhe-a com seus amigos.
+- Login seguro: Faça login com segurança usando seu e-mail e senha, conta do Google ou GitHub.
 
 ### ⚙️ Pré-requisitos
 
